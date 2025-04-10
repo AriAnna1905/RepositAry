@@ -1,0 +1,70 @@
+Javascript async advanced
+ Hai a disposizione una funzione chiamata getPastEvent, che restituisce una Promise con un evento 
+storico casuale sotto forma di oggetto:
+ function getPastEvent() {
+  return new Promise((resolve) => {
+ setTimeout(() => {
+   const events = [
+ { year: 1990, name: "World Wide Web Invented" },
+ { year: 2001, name: "Wikipedia Launched" },
+ { year: 1969, name: "Moon Landing" },
+ { year: 2020, name: "Global Pandemic" },
+ { year: 1989, name: "Fall of Berlin Wall" }
+   ];
+   const randomIndex = Math.floor(Math.random() * events.length);
+   resolve(events[randomIndex]);
+ }, Math.random() * 1000);
+  });
+ }
+ Obiettivi:
+ Scrivi una funzione asincrona travelThroughHistory, che:
+ - Chiama N volte getPastEvent() in parallelo. ( N puo essere 5,10, 100, 1000 )
+ - Raccoglie tutti i risultati.
+ - Ordina gli eventi cronologicamente (dal più vecchio al più recente).
+ - Rimuove i duplicati (stesso anno + stesso nome).
+ - Restituisce solo gli eventi avvenuti prima del 2000
+
+
+
+
+
+TENTATIVO FUNZIONANTE:
+function getPastEvent() {
+    return new Promise((resolve) => {
+   setTimeout(() => {
+     const events = [
+   { year: 1990, name: "World Wide Web Invented" },
+   { year: 2001, name: "Wikipedia Launched" },
+   { year: 1969, name: "Moon Landing" },
+   { year: 2020, name: "Global Pandemic" },
+   { year: 1989, name: "Fall of Berlin Wall" }
+     ];
+     const randomIndex = Math.floor(Math.random() * events.length);
+     resolve(events[randomIndex]);
+   }, Math.random() * 1000);
+    });
+   }
+
+
+const array = [];
+async function travelThroughHistory(n = 10) {
+  try {
+    const richiesta = [];
+    for(let i=0; i<n; i++) {
+      richiesta.push(getPastEvent());                  //push = aggiunge nuovi elementi alla fine di un array, e restituisce la 'lunghezza' dell'array
+    }                                                  // getPastEvent() = avvia la funzione
+  const risultato = await Promise.all(richiesta);
+  console.log(risultato)
+  ;
+            codice ordine cronologico            codice duplicati                     definire elementi univoci e non mostrare duplicati      solo eventi prima del 2000
+         ______________________________________  __________________________         ____________________________________________________  __________________________________
+  array = risultato.sort((a, b) => a.year - b.year).filter((events, i, array) => i === array.findIndex(event => event.name === events.name)).filter(events => events.year <2000);
+  console.log(array);         STAMPA RISULTATO DELLA RICHIESTA NELL'ARRAY
+  
+  return risultato;             
+
+  }catch(e){
+    console.log('Error: ' + e.message);
+  };
+}
+travelThroughHistory();
