@@ -15,7 +15,7 @@ function getPastEvent() {
    }
 
 // FUNZIONE ASINCRONA 
-const array = [];
+let array = [];
 
 async function travelThroughHistory(n = 10) {
   try {
@@ -33,7 +33,7 @@ async function travelThroughHistory(n = 10) {
   return risultato;
 
   }catch(e){
-    console.log('Errore: ' + e.message)
+    console.log('Errore: ' + e.message);
  
   };
 
