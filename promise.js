@@ -19,18 +19,18 @@ const array = [];
 
 async function travelThroughHistory(n = 10) {
   try {
-    const richiesta = [];
+    const request = [];
     for(let i=0; i<n; i++) {
-      richiesta.push(getPastEvent());                   
+      request.push(getPastEvent());                   
     }                                                  
-  const risultato = await Promise.all(richiesta);
+  const result = await Promise.all(request);
 
-  console.log(risultato);
+  console.log(result);
 
-  array = risultato.sort((a, b) => a.year - b.year).filter((events, i, array) => i === array.findIndex(event => event.name === events.name)).filter(events => events.year < 2000);
+  array = result.sort((a, b) => a.year - b.year).filter((events, i, array) => i === array.findIndex(event => event.name === events.name)).filter(events => events.year < 2000);
   console.log(array);
   
-  return risultato;
+  return result;
 
   }catch(e){
     console.log('Errore: ' + e.message)

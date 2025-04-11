@@ -110,18 +110,18 @@ const array = [];
 
 async function travelThroughHistory(n = 100) {
   try {
-    const richiesta = [];
+    const request = [];
     for(let i=0; i<n; i++) {
-      richiesta.push(getPastEvent());                   
+      request.push(getPastEvent());                   
     }                                                  
-  const risultato = await Promise.all(richiesta);
+  const result = await Promise.all(richiesta);
 
-  console.log(risultato);
+  console.log(result);
 
-  array = risultato.filter((events, i, array) => i === array.findIndex(event => event.name === events.name));
+  array = result.filter((events, i, array) => i === array.findIndex(event => event.name === events.name));
   console.log(array);
   
-  return risultato;
+  return result;
 
   }catch(e){
     console.log('Errore: ' + e.message)
