@@ -68,3 +68,9 @@ async function travelThroughHistory(n = 10) {
   };
 }
 travelThroughHistory();
+
+
+3
+### Obiettivi:
+ - chiama N volte la funzione getPastEvent in modo da ottenere nel'array di risposta almeno una volta, tutti gli oggetti dell'array
+( suggerimento: in questo caso la N non deve essere parametrizzata, il suo valore deve essere uguale la lunghezza dell'array )
