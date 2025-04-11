@@ -98,7 +98,7 @@ function getPastEvent() {
         { "year": 2068, "name": "Artificial Gravity Invented" },
         { "year": 2069, "name": "100th Anniversary of the Moon Landing" }
       ];
-      
+
      const randomIndex = Math.floor(Math.random() * events.length);
      resolve(events[randomIndex]);
    }, Math.random() * 1000);
@@ -118,7 +118,7 @@ async function travelThroughHistory(n = 100) {
 
   console.log(risultato);
 
-  array = risultato.sort((a, b) => a.year - b.year).filter((events, i, array) => i === array.findIndex(event => event.name === events.name)).filter(events => events.year < 2000);
+  array = risultato.filter((events, i, array) => i === array.findIndex(event => event.name === events.name));
   console.log(array);
   
   return risultato;
