@@ -1,0 +1,22 @@
+{
+  "name": "repary",
+  "version": "1.0.0",
+  "main": "promise.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AriAnna1905/RepositAry.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AriAnna1905/RepositAry/issues"
+  },
+  "homepage": "https://github.com/AriAnna1905/RepositAry#readme",
+  "description": "",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
