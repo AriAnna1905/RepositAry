@@ -114,7 +114,7 @@ async function travelThroughHistory(n = 100) {
     for(let i=0; i<n; i++) {
       request.push(getPastEvent());                   
     }                                                  
-  const result = await Promise.all(richiesta);
+  const result = await Promise.all(request);
 
   console.log(result);
 
@@ -124,7 +124,7 @@ async function travelThroughHistory(n = 100) {
   return result;
 
   }catch(e){
-    console.log('Errore: ' + e.message)
+    console.log(e.message)
  
   };
 
