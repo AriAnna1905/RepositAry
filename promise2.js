@@ -105,13 +105,16 @@ function getPastEvent() {
     });
    }
 
+
+/*
+
 // FUNZIONE ASINCRONA 
 let array = [];
 
 async function travelThroughHistory(n = 301) {
   try {
     const request = [];
-    for(let i=0; i<301; i++) {
+    for(let i=0; i<n; i++) {
       request.push(getPastEvent());                   
     }                                                  
   const result = await Promise.all(request);
@@ -130,5 +133,47 @@ async function travelThroughHistory(n = 301) {
 
 }
 
+*/
 
-travelThroughHistory();
+
+/*
+
+function callFunctionNTimes(array: T[], N: number):
+T[] {
+    const risultati: T[] = [];
+    const eventiOttenuti = new Set();
+
+    for (let i = 0; i < N; i++) {}
+       const oggetto = getRandomItem(array);
+       eventiOttenuti.add(oggetto);
+       risultati.push(oggetto);
+
+       if (eventiOttenuti.size === array.length) {
+        break;
+       }
+}
+
+    return risultati;
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
