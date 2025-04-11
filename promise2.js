@@ -106,25 +106,25 @@ function getPastEvent() {
    }
 
 // FUNZIONE ASINCRONA 
-const array = [];
+let array = [];
 
-async function travelThroughHistory(n = 100) {
+async function travelThroughHistory(n = 301) {
   try {
     const request = [];
-    for(let i=0; i<n; i++) {
+    for(let i=0; i<301; i++) {
       request.push(getPastEvent());                   
     }                                                  
   const result = await Promise.all(request);
 
   console.log(result);
 
-  array = result.filter((events, i, array) => i === array.findIndex(event => event.name === events.name));
+  array = result.sort((a, b) => a.year - b.year).filter((events, i, array) => i === array.findIndex(event => event.name === events.name));
   console.log(array);
   
   return result;
 
   }catch(e){
-    console.log(e.message)
+    console.log('Errore: ' + e.message)
  
   };
 
