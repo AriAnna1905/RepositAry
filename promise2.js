@@ -234,21 +234,30 @@ travelHistory().then(result => {
 
 //PROVA 2
 
-async function collezioneDegliEventi() {
+
+let array = [];
+
+async function collezioneDegliEventi(n = 95) {
   const eventiUnivoci = new Set();            
   const collezione = [];              
-  const totaleEventi = 94;      
+  const totaleEventi = 95;      
 
   while (eventiUnivoci.size < totaleEventi) {
     const evento = await getPastEvent();
-    const key = `${evento.year}-${evento.name}`;
+    const key = `${evento.name}-${evento.year}`;
     
     if (!eventiUnivoci.has(key)) {
       eventiUnivoci.add(key);
       collezione.push(evento);
-      console.log(`Evento: ${evento.year} - ${evento.name}`);
+      console.log(`${evento.name} - ${evento.year}`);
     }
   }
+
+  
+  array = collezione.sort((a, b) => a.year - b.year).filter((events, i, array) => i === array.findIndex(event => event.name === events.name)).filter(events => events.year < 2000);
+  console.log(array);
+
+  
 
   return collezione;
 }
@@ -256,6 +265,7 @@ async function collezioneDegliEventi() {
 collezioneDegliEventi().then(tuttiEventi => {
   console.log(`${tuttiEventi.length} eventi raccolti!`);
   console.log(tuttiEventi);
+  
 });
 
 
