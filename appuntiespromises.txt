@@ -74,3 +74,31 @@ travelThroughHistory();
 ### Obiettivi:
  - chiama N volte la funzione getPastEvent in modo da ottenere nel'array di risposta almeno una volta, tutti gli oggetti dell'array
 ( suggerimento: in questo caso la N non deve essere parametrizzata, il suo valore deve essere uguale la lunghezza dell'array )
+
+// Funzione già definita: getPastEvent()
+// Supponiamo che tu l'abbia già incollata nel tuo script
+
+async function collectAllEvents() {
+  const seen = new Set();            // Per tracciare gli eventi unici
+  const collected = [];              // Per salvare gli eventi raccolti
+  const totalUniqueEvents = 94;      // Lunghezza dell'array (nota fissa nel tuo caso)
+
+  while (seen.size < totalUniqueEvents) {
+    const event = await getPastEvent();
+    const key = `${event.year}-${event.name}`;
+    
+    if (!seen.has(key)) {
+      seen.add(key);
+      collected.push(event);
+      console.log(`Nuovo evento: ${event.year} - ${event.name} (${seen.size}/${totalUniqueEvents})`);
+    }
+  }
+
+  return collected;
+}
+
+// Chiamata della funzione principale
+collectAllEvents().then(allEvents => {
+  console.log(`\n ${allEvents.length} eventi raccolti!`);
+  console.log(allEvents);
+});
