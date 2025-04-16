@@ -112,6 +112,8 @@ function getPastEvent() {
 // ELENCO DI EVENTI DAL PIU' VECCHIO AL PIU' RECENTE CON EVENTI PRIMA DEL 2000
 // ELENCO DI TUTTI GLI EVENTI DAL PIU VECCHIO AL PIU' RECENTE
 
+
+/*
 let array = [];
 
 async function collezioneDegliEventi(n = 95) {
@@ -137,6 +139,8 @@ async function collezioneDegliEventi(n = 95) {
   
 
   return collezione;
+
+
 }
 
 collezioneDegliEventi().then(tuttiEventi => {
@@ -144,7 +148,46 @@ collezioneDegliEventi().then(tuttiEventi => {
   console.log(tuttiEventi);
   
 });
+*/
 
+//IN PARALLELO
+
+let array = [];
+
+async function travelThroughHistory(n = 95) {
+  const eventiUnivoci = new Map();
+
+  try {
+    while (eventiUnivoci.size < 95) {
+      const richiesta = Array.from({length: n }, () => getPastEvent());
+    }
+    const risultato = await Promise.all(richiesta);
+    risultato.forEach(event => { 
+      if (!eventiUnivoci.has(event.name)) {
+        eventiUnivoci.set(event.name, event);
+      }
+    });
+                      
+                                                   
+  
+
+  console.log(eventiUnivoci);
+
+
+  const array = Array.from(eventiUnivoci.values()).filter(event => event.year < 2000).sort((a, b) => a.year - b.year);
+  console.log(array);
+  
+  return array;
+
+  }catch(e){
+    console.log('Errore: ' + e.message);
+ 
+  };
+
+}
+
+
+travelThroughHistory();
 
 
 
