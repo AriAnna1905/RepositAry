@@ -150,44 +150,47 @@ collezioneDegliEventi().then(tuttiEventi => {
 });
 */
 
+
 //IN PARALLELO
+
 
 let array = [];
 
-async function travelThroughHistory(n = 95) {
-  const eventiUnivoci = new Map();
+async function travelthroughEvents(n = 95) {
+  const eventiUnivoci = new Set();            
+  const collezione = [];              
 
-  try {
-    while (eventiUnivoci.size < 95) {
-      const richiesta = Array.from({length: n }, () => getPastEvent());
-    }
-    const risultato = await Promise.all(richiesta);
-    risultato.forEach(event => { 
-      if (!eventiUnivoci.has(event.name)) {
-        eventiUnivoci.set(event.name, event);
+  while (eventiUnivoci.size < n) {
+  
+    const richiesta = Array.from({ length: n }, () => getPastEvent());
+    const events = await Promise.all(richiesta);
+
+    for (const evento of events) {
+      const key = `${evento.name}-${evento.year}`;
+      if (!eventiUnivoci.has(key)) {
+        eventiUnivoci.add(key);
+        collezione.push(evento);
+        console.log(`${evento.name} - ${evento.year}`);
       }
-    });
-                      
-                                                   
-  
 
-  console.log(eventiUnivoci);
+    
+    }
+  }
 
-
-  const array = Array.from(eventiUnivoci.values()).filter(event => event.year < 2000).sort((a, b) => a.year - b.year);
+  array = collezione.sort((a, b) => a.year - b.year).filter((event, i, arr) => i === arr.findIndex(e => e.name === event.name)).filter(event => event.year < 2000);
   console.log(array);
-  
-  return array;
 
-  }catch(e){
-    console.log('Errore: ' + e.message);
- 
-  };
+
+  return collezione;
 
 }
 
+travelthroughEvents().then(tuttiEventi => {
+  console.log(`${tuttiEventi.length} eventi raccolti!`);
+  console.log(tuttiEventi);
+});
 
-travelThroughHistory();
+
 
 
 
